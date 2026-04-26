@@ -1,7 +1,8 @@
 import { useState } from "react"
-import FeedbackForm from "./Feedback/FeedbackForm"
-import FeedbackList from "./Feedback/FeedbackList"
+import FeedbackForm from "../Components/Feedback/FeedbackForm"
+import FeedbackList from "../Components/Feedback/FeedbackList"
 import type { Feedback } from "../Types/Type"
+import "../Styles/FeedbackPage.css"
 
 function FeedbackPage() {
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([])

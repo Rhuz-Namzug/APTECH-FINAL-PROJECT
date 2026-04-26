@@ -1,49 +1,37 @@
 import { useState } from "react"
-import FeedbackForm from "./Pages/Feedback/FeedbackForm"
-import FeedbackList from "./Pages/Feedback/FeedbackList"
-import type { Feedback } from "./Types/Type"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Navbar from "./Components/Navbar"
+import "./Styles/Layout.css"
+
+import FeedbackPage from "./Pages/Feedback"
+import RegistrationPage from "./Pages/RegistrationPage"
+import AdminPage from "./Pages/AdminPage"
+import type { Registration } from "./Types/Type"
+
+import "./styles/layout.css"
 
 function App() {
-  const [feedbacks, setFeedbacks] = useState<Feedback[]>([])
-  const [editing, setEditing] = useState<Feedback | null>(null)
+  const [registrations, setRegistrations] = useState<Registration[]>([])
 
-  const addFeedback = (f: Feedback) => {
-    setFeedbacks([...feedbacks, f])
+  const addRegistration = (reg: Registration) => {
+    setRegistrations([...registrations, reg])
   }
 
-  const deleteFeedback = (id: number) => {
-    setFeedbacks(feedbacks.filter((f) => f.id !== id))
+  const deleteRegistration = (id: number) => {
+    setRegistrations(registrations.filter((r) => r.id !== id))
   }
 
-  const editFeedback = (f: Feedback) => {
-    setEditing(f)
-  }
+  return (
+    <BrowserRouter>
+      <Navbar />
 
-  const updateFeedback = (updated: Feedback) => {
-    setFeedbacks(
-      feedbacks.map((f) =>
-        f.id === updated.id ? updated : f
-      )
-    )
-    setEditing(null)
-  }
+      <Routes>
+        <Route path="/" element={<FeedbackPage />} />
+        <Route path="/registration" element={<RegistrationPage registrations={registrations} addRegistration={addRegistration} deleteRegistration={deleteRegistration} />} />
+        <Route path="/admin" element={<AdminPage />} />
 
-    return (
-    <div className="container">
-      <h1>Event Registration System</h1>
-
-      <FeedbackForm
-        addFeedback={addFeedback}
-        updateFeedback={updateFeedback}
-        editing={editing}
-      />
-
-      <FeedbackList
-        feedbacks={feedbacks}
-        deleteFeedback={deleteFeedback}
-        editFeedback={editFeedback}
-      />
-    </div>
+      </Routes>
+    </BrowserRouter>
   )
 }
 

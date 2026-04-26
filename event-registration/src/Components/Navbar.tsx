@@ -7,8 +7,8 @@ function Navbar() {
       <h2>Event System</h2>
 
       <div className="nav-links">
+        <Link to="/registration">Event Registration</Link>
         <Link to="/">Feedback</Link>
-        <Link to="/registration">Registration</Link>
         <Link to="/admin">Admin</Link>
       </div>
     </nav>
