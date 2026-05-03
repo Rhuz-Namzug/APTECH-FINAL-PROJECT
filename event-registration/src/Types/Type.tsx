@@ -8,12 +8,23 @@ export interface Feedback {
 export interface Registration {
   id: number
   name: string
+  venue: string
+  date: string
+  email: string
   event: string
-  status: string
+  participants: Participant[]
 }
 
 export interface User {
   id: number
   username: string
   role: "admin" | "user"
+}
+
+// Types/Type.ts
+
+export interface Participant {
+  id: number
+  name: string
+  email: string
 }

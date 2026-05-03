@@ -8,8 +8,6 @@ import RegistrationPage from "./Pages/RegistrationPage"
 import AdminPage from "./Pages/AdminPage"
 import type { Registration } from "./Types/Type"
 
-import "./styles/layout.css"
-
 function App() {
   const [registrations, setRegistrations] = useState<Registration[]>([])
 
@@ -21,13 +19,31 @@ function App() {
     setRegistrations(registrations.filter((r) => r.id !== id))
   }
 
+  const updateRegistration = (updated: Registration) => {
+    setRegistrations(
+      registrations.map((r) =>
+        r.id === updated.id ? updated : r
+      )
+    )
+  }
+
   return (
     <BrowserRouter>
       <Navbar />
 
       <Routes>
         <Route path="/" element={<FeedbackPage />} />
-        <Route path="/registration" element={<RegistrationPage registrations={registrations} addRegistration={addRegistration} deleteRegistration={deleteRegistration} />} />
+        <Route
+          path="/registration"
+          element={
+            <RegistrationPage
+              registrations={registrations}
+              addRegistration={addRegistration}
+              deleteRegistration={deleteRegistration}
+              updateRegistration={updateRegistration}
+            />
+          }
+        />
         <Route path="/admin" element={<AdminPage />} />
 
       </Routes>

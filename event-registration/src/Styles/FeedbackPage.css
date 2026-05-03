@@ -1,5 +1,5 @@
 .page {
-  background: #f1f5f9;
+  background: #093C5D;
   min-height: 100vh;
   padding: 40px 20px;
 }
@@ -30,8 +30,26 @@
 }
 
 .card {
-  background: white;
+  background: #ffffff;
+  padding: 2%;
+  gap: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+}
+
+.card2 {
+  width: 700px;
+  background: #ffffff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.feedback-list {
+  display: grid;
+  padding: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(700px, 1fr));
+  gap: 20px;
+  background-color: #3B7597;
 }

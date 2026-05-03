@@ -6,18 +6,26 @@ interface Props {
   registrations: Registration[]
   addRegistration: (reg: Registration) => void
   deleteRegistration: (id: number) => void
+  updateRegistration: (reg: Registration) => void
 }
 
-function RegistrationPage({ registrations, addRegistration, deleteRegistration }: Props) {
-
+function RegistrationPage({
+  registrations,
+  addRegistration,
+  deleteRegistration,
+  updateRegistration
+}: Props) {
   return (
     <div className="page">
       <RegistrationForm addRegistration={addRegistration} />
 
-      <RegistrationList
-        registrations={registrations}
-        deleteRegistration={deleteRegistration}
-      />
+      <div className="list">
+        <RegistrationList
+          registrations={registrations}
+          deleteRegistration={deleteRegistration}
+          updateRegistration={updateRegistration}
+        />
+      </div>
     </div>
   )
 }

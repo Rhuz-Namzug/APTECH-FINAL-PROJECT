@@ -13,14 +13,15 @@ const FeedbackList: React.FC<Props> = ({
   editFeedback
 }) => {
   return (
-    <div>
+    <div className="feedback-list">
       <h2>Feedback List</h2>
+      <br />
 
       {feedbacks.map((f) => (
-        <div key={f.id} className="card">
-          <h3>{f.name}</h3>
-          <p>Feedback: {f.feedback}</p>
-          <p>{f.comment}</p>
+        <div key={f.id} className="card2">
+          <h4>Name: {f.name}</h4>
+          <p><b>Attended Event: </b> {f.feedback}</p>
+          <p><b>Feedback: </b>{f.comment}</p>
 
           <button onClick={() => editFeedback(f)}>Edit</button>
           <button onClick={() => deleteFeedback(f.id)}>Delete</button>

@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom"
-import "../styles/navbar.css"
+import "../Styles/navbar.css"
 
 function Navbar() {
   return (
     <nav className="navbar">
-      <h2>Event System</h2>
+      <h2>Event Registration System</h2>
 
       <div className="nav-links">
-        <Link to="/registration">Event Registration</Link>
         <Link to="/">Feedback</Link>
+        <Link to="/registration">Event Registration</Link>
         <Link to="/admin">Admin</Link>
       </div>
     </nav>

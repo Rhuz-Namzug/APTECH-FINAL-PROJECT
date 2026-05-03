@@ -1,0 +1,130 @@
+/* ===== ADMIN PAGE LAYOUT ===== */
+.admin-page {
+  padding: 30px;
+}
+
+/* ===== TITLE ===== */
+.admin-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* ===== USER LIST CONTAINER ===== */
+.admin-users {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* ===== USER CARD ===== */
+.admin-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+  border: 2px solid black;
+}
+
+.admin-card:hover {
+  transform: translateY(-5px);
+}
+
+/* ===== USER INFO ===== */
+.admin-card h3 {
+  margin-bottom: 10px;
+}
+
+.admin-role {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* ===== BUTTON ===== */
+.admin-btn {
+  padding: 8px 12px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.admin-btn:hover {
+  background: #1d4ed8;
+}
+
+/* ===== ROLE COLORS ===== */
+.role-admin {
+  color: #16a34a; /* green */
+}
+
+.role-user {
+  color: #dc2626; /* red */
+}
+
+/* ADD USER FORM */
+.admin-add {
+  border: 2px solid black;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  width: 1000px;
+  max-width: none;
+}
+
+.admin-add input{
+  width: 96.5%;
+  margin-top: 10px;
+  padding: 10px;
+}
+.admin-add select {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+
+
+.admin-add button {
+  margin-top: 10px;
+  padding: 10px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.admin-add {
+  background: #3B7597;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 0 auto 30px auto;
+  max-width: 650px;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.admin-delete {
+  padding: 8px 12px;
+  background: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.admin-delete:hover {
+  background: #b91c1c;
+}
+
+.admin-page {
+  background-color: #093C5D;
+  min-height: 100vh;
+}

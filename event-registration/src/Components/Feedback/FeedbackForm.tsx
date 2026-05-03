@@ -26,7 +26,6 @@ const FeedbackForm: React.FC<Props> = ({
       feedback,
       comment
     }
-
     if (editing) {
       updateFeedback(newFeedback)
     } else {
@@ -41,23 +40,23 @@ const FeedbackForm: React.FC<Props> = ({
   return (
     <form className="form" onSubmit={handleSubmit}>
       <h2>Feedback Form</h2>
-
+      <h4>Username</h4>
       <input
         type="text"
         placeholder="Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-
+        <h4>Attended Event</h4>  
       <input
         type="text"
-        placeholder="Topic"
+        placeholder="Event Attended"
         value={feedback}
         onChange={(e) => setFeedback(e.target.value)}
       />
-
+      <h4>Feedback</h4>
       <textarea
-        placeholder="Comment"
+        placeholder="Feedback"
         value={comment}
         onChange={(e) => setComment(e.target.value)}
       />
