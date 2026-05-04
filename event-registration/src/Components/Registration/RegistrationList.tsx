@@ -66,7 +66,7 @@ const RegistrationList: React.FC<Props> = ({
           <ul>
             {r.participants.map((p) => (
               <li key={p.id}>
-                • {p.name} ({p.email})
+                {p.name} ({p.email})
                 <button onClick={() => removeParticipant(r, p.id)}>
                   Remove
                 </button>

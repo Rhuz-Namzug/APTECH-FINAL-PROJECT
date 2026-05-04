@@ -59,7 +59,7 @@
 }
 
 .card {
-  width: auto;
+  width: 90%;
   justify-content: center;  
   align-items: center; 
   padding: 20%;
@@ -67,19 +67,11 @@
 }
 
 .card2 {
-  width: auto;
+  width: 90%;
   justify-content: center; 
   align-items: stretch;      
   padding: 10%;
   border: 1px solid black;
-}
-
-.feedback-list {
-  display: grid;
-  padding: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(700px, 1fr));
-  gap: 20px;
-  border: 2px solid black;
 }
 
 .event-list {

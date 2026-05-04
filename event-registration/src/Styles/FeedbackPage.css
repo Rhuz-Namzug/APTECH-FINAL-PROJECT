@@ -22,7 +22,6 @@
   gap: 20px;
 }
 
-/* Stack on small screens */
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr;
@@ -35,21 +34,29 @@
   gap: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-
+  width: auto;
+  padding: 20px;
+  border: 1px solid black;
+  box-sizing: border-box;
 }
 
 .card2 {
-  width: 700px;
   background: #ffffff;
-  padding: 20px;
+  padding: 2%;
+  gap: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: auto;
+  padding: 20px;
+  border: 1px solid black;
+  box-sizing: border-box;
 }
 
 .feedback-list {
   display: grid;
   padding: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(700px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(1450px, 1fr));
   gap: 20px;
   background-color: #3B7597;
+  border: 2px solid black;
 }

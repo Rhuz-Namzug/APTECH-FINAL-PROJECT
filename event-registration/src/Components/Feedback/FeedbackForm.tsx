@@ -1,12 +1,13 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import type { Feedback } from "../../Types/Type"
 import "../../Styles/Forms.css"
 
 interface Props {
   addFeedback: (feedback: Feedback) => void
-  updateFeedback: (feedback: Feedback) => void
+  updateFeedback: (id: number, comment: string) => void
   editing: Feedback | null
 }
+
 
 const FeedbackForm: React.FC<Props> = ({
   addFeedback,
@@ -17,25 +18,26 @@ const FeedbackForm: React.FC<Props> = ({
   const [feedback, setFeedback] = useState("")
   const [comment, setComment] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault()
 
-    const newFeedback: Feedback = {
-      id: editing ? editing.id : Date.now(),
+  if (editing) {
+    updateFeedback(editing.id, comment)
+  } else {
+    const newFeedback = {
+      id: Date.now(),
       name,
       feedback,
       comment
     }
-    if (editing) {
-      updateFeedback(newFeedback)
-    } else {
-      addFeedback(newFeedback)
-    }
 
-    setName("")
-    setFeedback("")
-    setComment("")
+      setName("")
+      setFeedback("")
+      setComment("")
+
+    addFeedback(newFeedback)
   }
+}
 
   return (
     <form className="form" onSubmit={handleSubmit}>

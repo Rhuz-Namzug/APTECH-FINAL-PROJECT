@@ -28,3 +28,12 @@ export interface Participant {
   name: string
   email: string
 }
+
+export interface Props {
+  feedbacks: Feedback[]
+  addFeedback: (f: Feedback) => void
+  deleteFeedback: (id: number) => void
+  editFeedback: (f: Feedback) => void
+  updateFeedback: (id: number, comment: string) => void
+  editing: Feedback | null
+}
