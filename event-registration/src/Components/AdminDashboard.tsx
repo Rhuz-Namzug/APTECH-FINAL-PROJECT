@@ -4,12 +4,18 @@ import type { User } from "../Types/Type"
 interface AdminDashboardProps {
   users: User[]
   changeRole: (id: number) => void
+  currentUser: {
+    id: number
+    username: string
+    role: "admin" | "user"
+  }
   deleteUser: (id: number) => void 
 }
 
 const AdminDashboard: React.FC<AdminDashboardProps> = ({
   users,
   changeRole,
+  currentUser,
   deleteUser
 }) => {
   return (
@@ -33,12 +39,11 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 Change Role
               </button>
 
-              <button
-                className="admin-delete"
-                onClick={() => deleteUser(user.id)}
-              >
+              {currentUser.role === "admin" && currentUser.id !== user.id && (
+              <button className="admin-delete" onClick={() => deleteUser(user.id)}>
                 Delete
               </button>
+            )}
             </div>
           </div>
         ))}

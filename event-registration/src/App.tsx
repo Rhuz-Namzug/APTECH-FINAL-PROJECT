@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Navbar from "./Components/Navbar"
 import FeedbackPage from "./Pages/Feedback"
 import RegistrationPage from "./Pages/RegistrationPage"
-import EventsPage from "./Pages/Events"
 import AdminPage from "./Pages/AdminPage"
 
 import type { Feedback, Registration } from "./Types/Type"
@@ -14,6 +13,20 @@ import "./Styles/layout.css"
 function App() {
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([])
   const [editing, setEditing] = useState<Feedback | null>(null)
+  const [editingRegistration, setEditingRegistration] = useState<Registration | null>(null)
+  const [currentUser, setCurrentUser] = useState({
+  id: 1,
+  username: "Admin",
+  role: "admin" as "admin" | "user"
+})
+
+  const cancelEditRegistration = () => {
+  setEditingRegistration(null)
+}
+
+  const editRegistration = (reg: Registration) => {
+  setEditingRegistration(reg)
+}
 
   const addFeedback = (f: Feedback) => {
     setFeedbacks((prev) => [...prev, f])
@@ -61,7 +74,6 @@ function App() {
       <Navbar />
 
       <Routes>
-        {/* FEEDBACK PAGE */}
         <Route
           path="/"
           element={
@@ -76,7 +88,6 @@ function App() {
           }
         />
 
-        {/* REGISTRATION PAGE */}
         <Route
           path="/registration"
           element={
@@ -85,20 +96,25 @@ function App() {
               addRegistration={addRegistration}
               updateRegistration={updateRegistration}
               deleteRegistration={deleteRegistration}
+              editRegistration={editRegistration}
+              editingRegistration={editingRegistration}
+              cancelEditRegistration={cancelEditRegistration}
             />
           }
         />
 
-        {/* EVENTS PAGE */}
         <Route
-          path="/events"
-          element={
-            <EventsPage registrations={registrations} />
-          }
-        />
-
-        {/* ADMIN PAGE */}
-        <Route path="/admin" element={<AdminPage />} />
+  path="/admin"
+  element={
+    currentUser.role === "admin" ? (
+      <AdminPage currentUser={currentUser} />
+    ) : (
+      <h2 style={{ padding: "20px" }}>
+        Access Denied
+      </h2>
+    )
+  }
+/>
       </Routes>
     </BrowserRouter>
   )

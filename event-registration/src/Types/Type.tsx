@@ -21,8 +21,6 @@ export interface User {
   role: "admin" | "user"
 }
 
-// Types/Type.ts
-
 export interface Participant {
   id: number
   name: string

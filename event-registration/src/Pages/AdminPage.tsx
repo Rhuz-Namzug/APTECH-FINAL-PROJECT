@@ -3,10 +3,19 @@ import AdminDashboard from "../Components/AdminDashboard"
 import type { User } from "../Types/Type"
 import "../Styles/admin.css"
 
-function AdminPage() {
+interface props {
+  currentUser: {
+    id: number
+    username: string
+    role: "admin" | "user"
+  }
+}
+
+function AdminPage({ currentUser }: props) {
   const [users, setUsers] = useState<User[]>([
-    { id: 1, username: "Admin", role: "admin" }
-  ])
+  { id: 1, username: "Admin", role: "admin" },
+  { id: 2, username: "User1", role: "user" }
+])
 
   const [username, setUsername] = useState("")
   const [role, setRole] = useState<"admin" | "user">("user")
@@ -71,6 +80,7 @@ const deleteUser = (id: number) => {
       <AdminDashboard
   users={users}
   changeRole={changeRole}
+  currentUser={currentUser}
   deleteUser={deleteUser}
 />
     </div>

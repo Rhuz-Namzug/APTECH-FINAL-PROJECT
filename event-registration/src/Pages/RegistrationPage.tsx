@@ -7,26 +7,36 @@ interface Props {
   addRegistration: (reg: Registration) => void
   deleteRegistration: (id: number) => void
   updateRegistration: (reg: Registration) => void
+  editRegistration: (reg: Registration) => void
+  editingRegistration: Registration | null
+  cancelEditRegistration: () => void
 }
 
 function RegistrationPage({
   registrations,
   addRegistration,
   deleteRegistration,
-  updateRegistration
+  updateRegistration,
+  editRegistration,
+  editingRegistration,
+  cancelEditRegistration 
 }: Props) {
   return (
     <div className="page">
-      <RegistrationForm addRegistration={addRegistration} />
+  <RegistrationForm
+  addRegistration={addRegistration}
+  updateRegistration={updateRegistration}
+  editingRegistration={editingRegistration}
+  cancelEditRegistration={cancelEditRegistration}
+/>
 
-      <div className="list">
-        <RegistrationList
-          registrations={registrations}
-          deleteRegistration={deleteRegistration}
-          updateRegistration={updateRegistration}
-        />
+<RegistrationList
+  registrations={registrations}
+  deleteRegistration={deleteRegistration}
+  updateRegistration={updateRegistration}
+  editRegistration={editRegistration}
+/>
       </div>
-    </div>
   )
 }
 

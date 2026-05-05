@@ -1,16 +1,18 @@
 import React, { useState } from "react"
-import type { Registration, Participant } from "../../Types/Type"
+import type { Registration } from "../../Types/Type"
 
 interface Props {
   registrations: Registration[]
   deleteRegistration: (id: number) => void
   updateRegistration: (updated: Registration) => void
+  editRegistration: (reg: Registration) => void
 }
 
 const RegistrationList: React.FC<Props> = ({
   registrations,
   deleteRegistration,
-  updateRegistration
+  updateRegistration,
+  editRegistration
 }) => {
 
   const [newName, setNewName] = useState("")
@@ -62,7 +64,7 @@ const RegistrationList: React.FC<Props> = ({
 
 
               <td className="right">
-                          <h4>Participants:</h4>
+          <h4>Participants:</h4>
           <ul>
             {r.participants.map((p) => (
               <li key={p.id}>
@@ -92,6 +94,9 @@ const RegistrationList: React.FC<Props> = ({
               </td>
             </tr>
           </table>
+          <button onClick={() => editRegistration(r)}>
+          Edit
+          </button>
           <button onClick={() => deleteRegistration(r.id)}>
             Unregister
           </button>

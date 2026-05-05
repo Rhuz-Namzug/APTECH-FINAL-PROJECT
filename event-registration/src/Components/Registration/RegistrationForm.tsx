@@ -1,12 +1,20 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import type { Participant, Registration } from "../../Types/Type"
 import "../../Styles/Forms.css"
 
 interface Props {
   addRegistration: (reg: Registration) => void
+  updateRegistration: (reg: Registration) => void
+  editingRegistration: Registration | null
+  cancelEditRegistration: () => void
 }
 
-const RegistrationForm: React.FC<Props> = ({ addRegistration }) => {
+const RegistrationForm: React.FC<Props> = ({ 
+  addRegistration, 
+  updateRegistration, 
+  editingRegistration,
+  cancelEditRegistration
+}) => {
   const [name, setName] = useState("")
   const [venue, setVenue] = useState("")
   const [date, setDate] = useState("")
@@ -33,33 +41,101 @@ const RegistrationForm: React.FC<Props> = ({ addRegistration }) => {
   setPEmail("")
 }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-
-    const newReg: Registration = {
-  id: Date.now(),
-  name,
-  venue,
-  date,
-  email,
-  event,
-  participants
+const handleCancel = () => {
+  clearForm()
+  cancelEditRegistration()
 }
 
-    addRegistration(newReg)
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault()
 
-    setName("")
-    setVenue("")
-    setDate("")
-    setEmail("")
-    setEvent("")
-    setParticipants([])
-    setPName("")
-    setPEmail("")
+  if (editingRegistration) {
+    updateRegistration({
+      ...editingRegistration,
+      name,
+      venue,
+      date,
+      email,
+      event,
+      participants
+    })
+  } else {
+    addRegistration({
+      id: Date.now(),
+      name,
+      venue,
+      date,
+      email,
+      event,
+      participants
+    })
   }
 
+  setName("")
+  setVenue("")
+  setDate("")
+  setEmail("")
+  setEvent("")
+  setParticipants([])
+}
+
+const handleRegister = (e: React.FormEvent) => {
+  e.preventDefault()
+
+  addRegistration({
+    id: Date.now(),
+    name,
+    venue,
+    date,
+    email,
+    event,
+    participants
+  })
+
+  clearForm()
+}
+
+const handleUpdate = (e: React.FormEvent) => {
+  e.preventDefault()
+
+  if (!editingRegistration) return
+
+  updateRegistration({
+    ...editingRegistration,
+    name,
+    venue,
+    date,
+    email,
+    event,
+    participants
+  })
+
+  clearForm()
+  cancelEditRegistration()
+}
+
+  const clearForm = () => {
+  setName("")
+  setVenue("")
+  setDate("")
+  setEmail("")
+  setEvent("")
+  setParticipants([])
+}
+
+  useEffect(() => {
+  if (editingRegistration) {
+    setName(editingRegistration.name)
+    setVenue(editingRegistration.venue)
+    setDate(editingRegistration.date)
+    setEmail(editingRegistration.email)
+    setEvent(editingRegistration.event)
+    setParticipants(editingRegistration.participants)
+  }
+}, [editingRegistration])
+
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <form className="form">
       <h2>Event Registration</h2>
       <h4>Host Name</h4>
       <input
@@ -119,7 +195,21 @@ const RegistrationForm: React.FC<Props> = ({ addRegistration }) => {
 </ul>
 
 
-      <button type="submit">Register</button>
+  {editingRegistration ? (
+  <div>
+    <button type="button" onClick={handleUpdate}>
+      Update
+    </button>
+
+    <button type="button" onClick={handleCancel}>
+      Cancel
+    </button>
+  </div>
+) : (
+  <button type="button" onClick={handleRegister}>
+    Register
+  </button>
+)}
     </form>
   )
 }
